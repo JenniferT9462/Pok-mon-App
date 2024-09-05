@@ -23,6 +23,7 @@ async function fetchPokemonData() {
         
     } catch (error) {
         console.error(error.message);
+        // alert("You enter an invalid name or ID");
     }
     
 }
