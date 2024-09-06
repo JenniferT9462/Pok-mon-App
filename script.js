@@ -1,4 +1,5 @@
 //Fetch Data from the PokeAPI
+let pokemonBtn = document.getElementById('pokemonBtn')
 pokemonBtn.addEventListener('click', fetchPokemonData);
 let pokemonInput = document.getElementById('pokemonId');
 //Display the Pokemon Data
@@ -23,6 +24,7 @@ async function fetchPokemonData() {
         
     } catch (error) {
         console.error(error.message);
+        // alert("You enter an invalid name or ID");
     }
     
 }

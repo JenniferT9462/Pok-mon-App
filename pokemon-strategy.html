@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Strategy</title>
+</head>
+<body>
+    <a href="index.html">Catch Pokemon</a>
+    <a href="poke-items.html">Pokemon Items</a>
+    <a href="pokemon-strategy.html">Pokemon Strategies</a>
+
+    <form class="container border border-primary border-3 p-3 mt-5" style="width: 240px;">
+        <h3>Battle Strategies!</h3>
+        <label for="pokemon-1" class="form-label">Pokemon 1: </label>
+        <input type="text" id="pokemon-1" class="form-control">
+        <label for="pokemon-2" class="form-label">Pokemon 2: </label>
+        <input type="text" id="pokemon-2" class="form-control mb-3">
+        <button type="button" id="strategyBtn" class="btn btn-primary">Get Strategy</button>
+    </form>
+
+    <div id="strategy-output"></div>
+    
+    
+    <script src="pokemon-strategy.js"></script>
+</body>
+</html>
