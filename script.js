@@ -1,4 +1,5 @@
 //Fetch Data from the PokeAPI
+let pokemonBtn = document.getElementById('pokemonBtn')
 pokemonBtn.addEventListener('click', fetchPokemonData);
 let pokemonInput = document.getElementById('pokemonId');
 //Display the Pokemon Data
