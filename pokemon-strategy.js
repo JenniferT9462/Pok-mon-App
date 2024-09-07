@@ -18,15 +18,13 @@ function handleForm() {
     //Getting the value of pokemon inputs(1 and 2)
     let poke1 = document.getElementById('pokemon-1').value;
     let poke2 = document.getElementById('pokemon-2').value;
-    let Name1 = fetchPokemonData(poke1);
-    let Name2 = fetchPokemonData(poke2);
-    //Getting API key from local storage w/ getItem()
+   //Getting API key from local storage w/ getItem()
     const apiKey = localStorage.getItem('huggingFace_Key');
     //Proof of Life
     console.log('Retrieved API Key: ', apiKey);
     console.log('Pokemon 1: ', poke1);
     console.log('Pokemon 2: ', poke2);
-    fetchStrategy(poke1 || Name1, poke2 || Name2);
+    fetchStrategy(poke1, poke2);
 }
 //Add an event listener for button
 strategyBtn.addEventListener('click', handleForm);
@@ -49,34 +47,33 @@ async function fetchStrategy(pokemon1, pokemon2) {
                 "content": prompt
             }
         ],
-        "max-tokens": 500,
+        "max-tokens": 800,
         "stream": false 
         })
     });
     const data = await response.json();
     console.log(data);
+    renderResult(data);
 }
+let strategyOutput = document.getElementById('strategy-output');
+ function renderResult(result) {
+    let strategyResult = result.choices[0].message.content;
+    //Proof of Life
+    console.log(strategyResult);
+    strategyOutput.innerHTML = `
+        <div class="container mt-4">
+          <div class="card border border-4 border-warning">
+            <div class="card-title">
+              <h3>Battle Strategies:</h3>
+            </div>
+            <div class="card-body">
+              <div class="card-text">${strategyResult}</div>
+ ]           </div>
+          </div>
+        </div> 
+        `;
 
 
-async function fetchPokemonData(pokeInput) {
-    console.log('Button has been clicked');
-    const url = `https://pokeapi.co/api/v2/pokemon/${pokeInput}`;
-    try {
-        const response = await fetch(url);
-        //Check if response is ok or successful
-        //The '!' means 'not' or opposite, So, if the response is not 'ok'
-        if (!response.ok) {
-            throw new Error(`Pokemon not found: ${pokeInput}`)
-        }
-        const pokemonData = await response.json();
-        let pokeName = pokemonData.name;
-        return pokeName;
-    } catch (error) {
-        console.error(error.message);
-        // alert("You enter an invalid name or ID");
-    }
-    
-}
-	
-	
+ }
+
 	
