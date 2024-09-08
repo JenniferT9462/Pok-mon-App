@@ -26,9 +26,7 @@ async function fetchPokemonData() {
         console.error(error.message);
         // alert("You enter an invalid name or ID");
     }
-    
 }
-
 //Create a Pokemon Object
 function createPokemon(data) {
     return {
@@ -38,7 +36,6 @@ function createPokemon(data) {
         sprite: data.sprites.front_default
     }
 }
-
 function renderPokemon(data) {
     let pokeName = data.name;
     let pokeId = data.id;
