@@ -25,6 +25,7 @@ async function handleForm() {
     // console.log('Retrieved API Key:' , retrieveApiKey());
     console.log('Pokemon 1: ', poke1);
     console.log('Pokemon 2: ', poke2);
+    //Use hugging face to generate a response to my prompt using the inputs
     await fetchStrategy(poke1, poke2);
     
 }
@@ -48,7 +49,9 @@ async function fetchStrategy(input1, input2) {
                 "content": await fetchPokemon(input1, input2)
             }
         ],
-        "max-tokens": 800,
+        "max-tokens": 500,
+        // "max_new_tokens": 500,
+
         "stream": false 
         })
     });
@@ -77,7 +80,7 @@ let strategyOutput = document.getElementById('strategy-output');
         </div> 
         `;
 }
-
+//Get pokemon's name and abilities and then generate a prompt with that data
 async function fetchPokemon(pokeInput1, pokeInput2) {
   const url1 = `https://pokeapi.co/api/v2/pokemon/${pokeInput1}`;
   const url2 = `https://pokeapi.co/api/v2/pokemon/${pokeInput2}`;
@@ -104,14 +107,15 @@ async function fetchPokemon(pokeInput1, pokeInput2) {
           input2Abilities += ', ';
       }
   }
+  //The prompt needs to be a string for the hugging face api model post request
   let prompt = "";
   prompt = generatePrompt(data1.name, input1Abilities, data2.name, input2Abilities);
   console.log(prompt);
   return prompt;
 };  
-//Generate prompt with inputs
+//Generate prompt with inputs with their names and abilities
 function generatePrompt(input1, input1Abilities, input2, input2Abilities) {
   return `In the pokemon universe, 
       if ${input1}, with their ${input1Abilities} abilities and ${input2} with their ${input2Abilities} abilities; were to battle
-      what would their strategies be given their abilities?`;
+      what would their strategies be?`;
 };	
